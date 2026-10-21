@@ -1,0 +1,20 @@
+{
+  "name": "scene-labs",
+  "interface": {
+    "displayName": "Scene Labs"
+  },
+  "plugins": [
+    {
+      "name": "scene",
+      "source": {
+        "source": "local",
+        "path": "./plugins/scene"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

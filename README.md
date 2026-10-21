@@ -1,6 +1,6 @@
 # Scene Labs plugins
 
-Claude Code and Codex skills for authoring animated Scene diagrams: Mermaid and PlantUML sequence diagrams, Mermaid flowcharts, and Mermaid state diagrams.
+Skills for Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, and OpenCode for authoring animated Scene diagrams: Mermaid and PlantUML sequence diagrams, Mermaid flowcharts, and Mermaid state diagrams.
 
 ## Install in Claude Code
 
@@ -48,22 +48,78 @@ codex plugin add scene@scene-labs
 
 Codex's documented Git-marketplace workflow does not provide Claude Code's **Enable auto-update** switch. These commands provide an explicit update path; installing this package does not configure a background updater.
 
+## Cursor
+
+For a personal or project skill, use GitHub CLI 2.90 or later. Run this in your project repository:
+
+```sh
+gh skill install scene-labs/scene-plugins scene --agent cursor --scope project
+```
+
+Restart your agent session and ask for a Scene diagram. To update the installed skill, run `gh skill update scene --dir .agents/skills` from the same project. This is a manual update path.
+
+### Cursor team marketplace
+
+Teams and Enterprise admins can import `https://github.com/scene-labs/scene-plugins` under **Dashboard → Plugins & MCPs → Team Marketplaces → Add Marketplace → Import from Repo**. Add Scene to the marketplace, then install it from **Customize**.
+
+For automatic refresh, enable **Marketplace Settings → Enable Auto Refresh** and connect the Cursor GitHub App to the repository. Admins can also use **Refresh** manually. This requires the relevant repository access; importing this public repository does not grant that access. The repository includes a Cursor marketplace manifest; it is not yet listed in Cursor's reviewed public marketplace.
+
+## GitHub Copilot
+
+With GitHub CLI 2.90 or later, run this in your project repository:
+
+```sh
+gh skill install scene-labs/scene-plugins scene --agent github-copilot --scope project
+```
+
+Restart your agent session. The installed skill is available to Copilot's supported agents; commit the project skill if your team or cloud agent needs it. To update it, run `gh skill update scene --dir .agents/skills` from the same project. Updates are manual.
+
+## Gemini CLI
+
+Run in your terminal:
+
+```sh
+gemini extensions install https://github.com/scene-labs/scene-plugins --auto-update
+```
+
+Review and accept the extension installation prompt, then restart Gemini CLI. The extension loads the shared Scene authoring reference as context whenever enabled. It has no MCP servers or executable hooks.
+
+The install flag enables automatic updates. For a manual update, run:
+
+```sh
+gemini extensions update scene
+```
+
+## OpenCode
+
+With GitHub CLI 2.90 or later, run this in your project repository:
+
+```sh
+gh skill install scene-labs/scene-plugins scene --agent opencode --scope project
+```
+
+Restart OpenCode and ask for a Scene diagram. OpenCode discovers the installed project skill directly; no JavaScript plugin is needed. To update it, run `gh skill update scene --dir .agents/skills` from the same project. Updates are manual.
+
+## Inspect before installing
+
+Use `gh skill preview scene-labs/scene-plugins scene` to inspect the shared reference. Avoid installing another copy if your agent already loads Scene.
+
 ## Use
 
-Ask Claude to create a Scene diagram or add Scene annotations to an existing diagram. You can also invoke the skill explicitly:
+Ask your agent to create a Scene diagram or add Scene annotations to an existing diagram. In Claude Code, you can also invoke the skill explicitly:
 
 ```text
 /scene:scene Describe your system interaction here
 ```
 
-The skill teaches Claude Scene's annotations and playback behavior. It does not install or run the Scene viewer.
+The skill teaches your agent Scene's annotations and playback behavior. It does not install or run the Scene viewer.
 
 If you previously copied a standalone Scene skill into your Claude skills directory, remove that old copy after confirming the plugin works so you do not keep loading outdated instructions.
 
 ## Publish an update
 
 1. Update `plugins/scene/skills/scene/SKILL.md` from the current Scene authoring reference.
-2. Bump `version` together in `plugins/scene/plugin.json` and `plugins/scene/.claude-plugin/plugin.json`. The portable manifest serves Codex; the Claude manifest serves Claude Code. Do not put a second version in either marketplace catalog. Claude users do not receive changed files without a version bump.
+2. Bump `version` together in `plugins/scene/plugin.json`, `plugins/scene/.claude-plugin/plugin.json`, `plugins/scene/.cursor-plugin/plugin.json`, and `gemini-extension.json`. Do not put a second version in either marketplace catalog. Claude users do not receive changed files without a version bump.
 3. Validate both the plugin and marketplace:
 
    ```sh
@@ -72,7 +128,7 @@ If you previously copied a standalone Scene skill into your Claude skills direct
    ```
 
 4. Check Codex discovery with `codex plugin list --marketplace scene-labs --available --json` from this repository.
-5. Review the changes and verify the skill loads in both clients before pushing to `main`.
+5. Test GitHub CLI skill installation, Gemini extension packaging, and each available client before pushing to `main`. Review changes before publishing.
 
 Keep the published skill synchronized with the Scene docs and onboarding instructions when the syntax changes.
 

@@ -1,6 +1,6 @@
 {
   "name": "scene",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Create animated Mermaid and PlantUML diagrams with Scene annotations, state cards, and step-by-step playback.",
   "author": {
     "name": "Scene Labs"

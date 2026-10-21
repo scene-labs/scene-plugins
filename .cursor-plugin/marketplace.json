@@ -1,0 +1,16 @@
+{
+  "name": "scene-labs",
+  "owner": {
+    "name": "Scene Labs"
+  },
+  "metadata": {
+    "description": "Scene diagram authoring for developer agents."
+  },
+  "plugins": [
+    {
+      "name": "scene",
+      "source": "plugins/scene",
+      "description": "Create animated Mermaid and PlantUML diagrams with Scene annotations, state cards, and step-by-step playback."
+    }
+  ]
+}

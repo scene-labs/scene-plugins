@@ -136,6 +136,10 @@ Use Scene Labs as both the git author and committer, with a non-personal email a
 
 See the [Claude Code plugin documentation](https://code.claude.com/docs/en/discover-plugins) for installation and updates.
 
+## Report an issue
+
+For problems with the Scene app or any Scene agent plugin or skill, [open an issue](https://github.com/scene-labs/scene-plugins/issues). Include your agent and version, steps to reproduce, and the relevant diagram or error message.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).

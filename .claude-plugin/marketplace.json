@@ -1,0 +1,14 @@
+{
+  "name": "scene-labs",
+  "owner": {
+    "name": "Scene Labs"
+  },
+  "plugins": [
+    {
+      "name": "scene",
+      "source": "./plugins/scene",
+      "description": "Create animated Mermaid and PlantUML diagrams with Scene annotations."
+    }
+  ],
+  "description": "Scene Labs skills for animated Mermaid and PlantUML diagrams."
+}
